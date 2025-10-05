@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriMitra - The Future of Farming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+           <a href="#" onclick="showPage('home')" class="flex items-center space-x-3">
+    <img src="images/loggo.jpg" alt="AgriMitra Logo" class="h-10">
+    <span class="text-3xl font-extrabold text-gray-800">AgriMitra</span>
+</a>
+            <div class="hidden md:flex space-x-8 items-center text-gray-600 font-semibold">
+                <a onclick="showPage('home')" class="nav-link active">Home</a>
+                <a onclick="showPage('crop-study')" class="nav-link">Crop Study</a>
+                <a onclick="showPage('aeroponics')" class="nav-link">Aeroponics Guide</a>
+                <a onclick="showPage('gardening')" class="nav-link">Gardening Planner</a>
+                <a onclick="showPage('automation')" class="nav-link">Automation</a>
+            </div>
+            <div id="auth-links" class="hidden md:flex items-center gap-4">
+                 <a onclick="showPage('recommendation')" id="login-nav-link" class="btn-primary">Get Recommendation</a>
+                 <div id="user-info" class="hidden items-center gap-4">
+                     <span id="user-name" class="font-semibold text-gray-700"></span>
+                     <a onclick="logout()" id="logout-nav-link" class="font-semibold text-red-600 hover:text-red-800 cursor-pointer">Logout</a>
+                 </div>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+             <a onclick="showPage('home')" class="block py-2 nav-link active">Home</a>
+             <a onclick="showPage('crop-study')" class="block py-2 nav-link">Crop Study</a>
+             <a onclick="showPage('aeroponics')" class="block py-2 nav-link">Aeroponics Guide</a>
+             <a onclick="showPage('gardening')" class="block py-2 nav-link">Gardening Planner</a>
+             <a onclick="showPage('automation')" class="block py-2 nav-link">Automation</a>
+             <hr class="my-2">
+             <div id="mobile-auth-links">
+                 <a onclick="showPage('recommendation')" class="block py-2 nav-link">Get Recommendation</a>
+             </div>
+        </div>
+    </header>
+
+    <main>
+
+        <div id="page-home">
+            <div class="container mx-auto px-6 py-12">
+                <section id="home-slider" class="relative w-full h-[70vh] rounded-3xl overflow-hidden shadow-2xl fade-in">
+                    <div class="relative w-full h-full">
+                        <div class="slider-item absolute w-full h-full transition-opacity duration-1000 ease-in-out opacity-0">
+                            <img src="images/visualhead.jpg" alt="Crop Study" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white text-center p-8">
+                                <h2 class="text-4xl md:text-6xl font-extrabold">Visualize Crop Growth</h2>
+                                <p class="mt-4 text-lg max-w-2xl">Explore interactive, step-by-step growth cycles for your favorite plants.</p>
+                                <button onclick="showPage('crop-study')" class="mt-8 bg-white text-green-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300">Explore Crop Studies</button>
+                            </div>
+                        </div>
+                        <div class="slider-item absolute w-full h-full transition-opacity duration-1000 ease-in-out opacity-0">
+                            <img src="images/mainaero.jpg" alt="Aeroponics Guide" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white text-center p-8">
+                                <h2 class="text-4xl md:text-6xl font-extrabold">Master Aeroponics</h2>
+                                <p class="mt-4 text-lg max-w-2xl">From setup to harvest, our guides make soil-less farming simple and efficient.</p>
+                                <button onclick="showPage('aeroponics')" class="mt-8 bg-white text-green-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300">View the Guide</button>
+                            </div>
+                        </div>
+                        <div class="slider-item absolute w-full h-full transition-opacity duration-1000 ease-in-out opacity-0">
+                            <img src="images/crophead.jpg" alt="Gardening Planner" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white text-center p-8">
+                                <h2 class="text-4xl md:text-6xl font-extrabold">Plan Your Perfect Garden</h2>
+                                <p class="mt-4 text-lg max-w-2xl">Calculate yields, estimate profits, and design your home garden with our smart tools.</p>
+                                <button onclick="showPage('gardening')" class="mt-8 bg-white text-green-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300">Start Planning</button>
+                            </div>
+                        </div>
+                         <div class="slider-item absolute w-full h-full transition-opacity duration-1000 ease-in-out opacity-0">
+                            <img src="images/automain.jpg" alt="Automation" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white text-center p-8">
+                                <h2 class="text-4xl md:text-6xl font-extrabold">Step into the Future</h2>
+                                <p class="mt-4 text-lg max-w-2xl">Monitor and control your farm remotely with our smart automation dashboard.</p>
+                                <button onclick="showPage('automation')" class="mt-8 bg-white text-green-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300">View Dashboard</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="prev-slide" class="absolute top-1/2 left-4 -translate-y-1/2 bg-white/50 hover:bg-white text-gray-800 p-3 rounded-full shadow-md transition z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <button id="next-slide" class="absolute top-1/2 right-4 -translate-y-1/2 bg-white/50 hover:bg-white text-gray-800 p-3 rounded-full shadow-md transition z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                    
+                    <div id="slider-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 z-10"></div>
+                </section>
+            </div>
+            
+            <section class="container mx-auto px-6 py-12">
+                <h2 class="section-title">Why Choose AeroGrowth?</h2>
+                <p class="section-subtitle">We provide a comprehensive platform to empower modern farmers and home gardeners alike.</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card text-center fade-in">
+                        <div class="mx-auto mb-4 bg-green-100 p-4 rounded-full w-20 h-20 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-700"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-green-800">Visual Learning</h3>
+                        <p class="text-gray-600">Understand complex growth cycles with our beautiful, step-by-step illustrations.</p>
+                    </div>
+                    <div class="card text-center fade-in" style="transition-delay: 200ms;">
+                        <div class="mx-auto mb-4 bg-green-100 p-4 rounded-full w-20 h-20 flex items-center justify-center">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-700"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><path d="M20 12h-4"/><path d="M4 12H8"/><path d="M12 4V2"/><path d="M12 22v-2"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-green-800">Expert Guides</h3>
+                        <p class="text-gray-600">From setup to maintenance, our guides make aeroponics accessible to everyone.</p>
+                    </div>
+                    <div class="card text-center fade-in" style="transition-delay: 400ms;">
+                        <div class="mx-auto mb-4 bg-green-100 p-4 rounded-full w-20 h-20 flex items-center justify-center">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-700"><path d="M21 7.5a2.5 2.5 0 0 1-2.5 2.5h-10A2.5 2.5 0 0 1 6 7.5v-4A2.5 2.5 0 0 1 8.5 1h7A2.5 2.5 0 0 1 18 3.5v1"/><path d="M21 16.5a2.5 2.5 0 0 1-2.5 2.5h-10a2.5 2.5 0 0 1-2.5-2.5v-1a2.5 2.5 0 0 1 2.5-2.5h11.5c1.4 0 2.5 1.1 2.5 2.5v1"/><path d="M12 12V7h4"/><path d="M4 22v-3"/><path d="M18 13.5V7H8"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-green-800">Smart Planning</h3>
+                        <p class="text-gray-600">Use our interactive tools to calculate yield and profits for your home garden.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-crop-study" class="hidden-page">
+            <section class="page-header" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('images/cropback.jpg');">
+                <h1>Crop Growth Visualizer</h1>
+                <p>Select a crop to explore its entire life cycle, from seed to harvest. We've crafted these visuals to make learning intuitive and beautiful.</p>
+            </section>
+            
+            <div class="w-full max-w-5xl mx-auto px-6 pb-12 fade-in bg-green-100 rounded-2xl shadow-lg">
+                <div class="text-center mb-12">
+                    <select id="crop-selector" class="p-3 border rounded-lg shadow-sm w-full md:w-1/3 bg-white text-lg">
+                        <option value="" selected>Select a Crop</option>
+                        <option value="tomato">Tomato</option>
+                        <option value="potato">Potato</option>
+                        <option value="lettuce">Lettuce</option>
+                        <option value="cauliflower">Cauliflower</option>
+                        <option value="onion">Onion</option>
+                        
+                    </select>
+                </div>
+
+                <div id="crop-showcase-container" class="relative rounded-2xl shadow-xl mb-8 overflow-hidden">
+                    <iframe 
+                        id="showcase-iframe"
+                        class="pointer-events-none" 
+                        src="https://www.youtube.com/embed/VoJHZmpsXEg?autoplay=1&mute=1&loop=1&playlist=VoJHZmpsXEg&controls=0&showinfo=0&modestbranding=1" 
+                        title="Crop Showcase" 
+                        frameborder="0" 
+                        allow="autoplay; encrypted-media">
+                    </iframe>
+                    <div class="absolute inset-0 bg-black/20 flex flex-col items-center justify-end text-center text-white p-8 pb-12">
+                        <h2 class="text-4xl md:text-5xl font-extrabold text-shadow-lg text-green-100 opacity-80">Discover Your Next Crop!</h2>
+                    
+                    </div>
+                </div>
+
+                <div id="crop-details-container" class="hidden">
+                    </div>
+            </div>
+        </div>
+
+        <div id="page-aeroponics" class="hidden-page">
+             <section class="page-header" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('images/aeroponichead.jpg')">
+                 <h1>The Ultimate Aeroponics Guide</h1>
+                 <p>Follow our expert-crafted guide to build, operate, and succeed with your own aeroponic system.</p>
+             </section>
+             <div class="container mx-auto px-6 pb-12 fade-in">
+                 <div class="space-y-12">
+                     <div class="card">
+                         <h3 class="text-2xl font-bold mb-6 text-green-700">How to Set Up Your Tower</h3>
+                         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
+                             <div class="text-center fade-in">
+                                 <div class="relative">
+                                     <img src="images/step1.jpg" class="rounded-lg mb-3 shadow-md">
+                                     <div class="absolute -top-4 -left-4 bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">1</div>
+                                 </div>
+                                 <h4 class="font-bold">Assemble Reservoir</h4>
+                                 <p class="text-sm text-gray-500">This is the foundation and holds your nutrient solution.</p>
+                             </div>
+                             <div class="text-center fade-in" style="transition-delay: 200ms;">
+                                 <div class="relative">
+                                     <img src="images/step2.jpg" class="rounded-lg mb-3 shadow-md">
+                                     <div class="absolute -top-4 -left-4 bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">2</div>
+                                 </div>
+                                 <h4 class="font-bold">Stack Sections</h4>
+                                 <p class="text-sm text-gray-500">Carefully place each growing section on top of the other.</p>
+                             </div>
+                             <div class="text-center fade-in" style="transition-delay: 400ms;">
+                                 <div class="relative">
+                                     <img src="images/step3.jpg" class="rounded-lg mb-3 shadow-md">
+                                     <div class="absolute -top-4 -left-4 bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">3</div>
+                                 </div>
+                                 <h4 class="font-bold">Install Pump & Tubing</h4>
+                                 <p class="text-sm text-gray-500">Connect the pump to the tubing that runs up the tower.</p>
+                             </div>
+                             <div class="text-center fade-in" style="transition-delay: 600ms;">
+                                 <div class="relative">
+                                     <img src="images/step4.jpg" class="rounded-lg mb-3 shadow-md">
+                                     <div class="absolute -top-4 -left-4 bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">4</div>
+                                 </div>
+                                 <h4 class="font-bold">Place Seedlings</h4>
+                                 <p class="text-sm text-gray-500">Gently place your seedlings in the net pots.</p>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="grid md:grid-cols-2 gap-8">
+                         <div class="card fade-in">
+                             <h3 class="text-2xl font-bold mb-4 text-green-700">Maintenance & Safety</h3>
+                             <ul class="space-y-4 text-gray-700">
+                                 <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mt-1 flex-shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span><strong>Monitor Nutrients:</strong> Check pH (5.5-6.5) and EC every 2-3 days for optimal plant health.</span></li>
+                                 <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mt-1 flex-shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span><strong>Regular Cleaning:</strong> Sanitize the reservoir every 2-3 weeks to prevent algae and harmful bacteria.</span></li>
+                                 <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mt-1 flex-shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span><strong>Electrical Safety:</strong> Use a GFCI outlet and ensure all electrical components are shielded from water.</span></li>
+                             </ul>
+                         </div>
+                         <div class="card fade-in" style="transition-delay: 200ms;">
+                             <h3 class="text-2xl font-bold mb-4 text-green-700">The Aeroponic Advantage</h3>
+                             <p class="text-gray-700">Aeroponics is revolutionary. By misting roots directly with nutrients, it uses up to <strong>95% less water</strong> than soil farming, accelerates growth, and eliminates the need for pesticides. This technology allows for high-density vertical farming, making it possible to grow fresh produce in any environment, year-round.</p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+
+        <div id="page-gardening" class="hidden-page">
+            <section class="page-header" style="background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('images/garden.jpg')">
+                <h1>Home Garden Planner</h1>
+                <p>Design your perfect home garden. Our interactive tool helps you visualize land use and calculates everything you need to know, from water usage to potential profits.</p>
+            </section>
+            <div class="container mx-auto px-6 pb-12 fade-in">
+                <div id="gardening-layout-container" class="initial-view">
+                    <div id="gardening-form-wrapper">
+                        <div class="p-8 rounded-xl shadow-lg bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/gardenblock.jpg');">
+                            <h3 class="text-3xl font-bold mb-6 text-white text-center">Input Your Garden Details</h3>
+                            <form id="garden-planner-form" class="space-y-4">
+                                <div>
+                                    <label for="garden-land-area" class="block font-medium text-gray-200 mb-1">Total Land Area (sq ft)</label>
+                                    <input type="number" id="garden-land-area" class="w-full p-3 border-0 rounded-md bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-green-400" placeholder="e.g., 200">
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-medium text-gray-200">Allocate by: <span id="alloc-mode-label">Area (sq ft)</span></span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="alloc-mode-toggle">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div id="garden-crop-inputs"></div>
+                                <div class="text-center">
+                                    <button type="button" id="add-garden-crop-btn" class="text-green-300 hover:text-white font-semibold transition">+ Add Another Crop</button>
+                                </div>
+                                 <p id="remaining-land-text" class="text-center font-semibold text-amber-400 h-6"></p>
+                                <div class="pt-4">
+                                    <button type="submit" class="w-full btn-primary text-lg">Generate My Plan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="garden-plan-results" class="hidden">
+                        <div class="card p-6 garden-plan-results-card">
+                            <h2 class="text-3xl font-bold text-center mb-4">Your Personalized Garden Plan!</h2>
+                            <div id="garden-input-summary" class="text-center mb-4"></div>
+                            <div id="garden-plot-container" class="w-full max-w-lg mx-auto aspect-square p-4 rounded-md border-4 border-yellow-800">
+                                </div>
+                            <div class="mt-6">
+                                <h3 class="font-bold text-xl text-center text-green-800 mb-4">Key Information</h3>
+                                <div id="garden-key-info" class="space-y-3 text-gray-700">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="garden-loader" class="hidden">
+                    <div class="loader-sprout"></div>
+                    <p class="text-green-700 font-semibold mt-4">Generating your garden...</p>
+                </div>
+
+                 <div class="mt-16">
+                     <h2 class="section-title">Home Gardening Resources</h2>
+                     <p class="section-subtitle">Get started on your gardening journey with these helpful videos and guides.</p>
+                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                         <div class="card aspect-w-16 aspect-h-9"><iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/R441m_2nLpY" title="Beginner Gardener" frameborder="0" allowfullscreen></iframe></div>
+                         <div class="card aspect-w-16 aspect-h-9"><iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/LpMWd_tYJ0E" title="Pest Control" frameborder="0" allowfullscreen></iframe></div>
+                         <div class="card aspect-w-16 aspect-h-9"><iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/p_yYqj0_T4U" title="Harvesting" frameborder="0" allowfullscreen></iframe></div>
+                     </div>
+                 </div>
+                  <div class="mt-16 card bg-green-50">
+                     <h2 class="section-title mb-4">Why Start a Home Garden?</h2>
+                     <p class="text-gray-700 max-w-3xl mx-auto text-center leading-relaxed">
+                         Embracing home gardening is more than just a hobby; it's a step towards a healthier and more sustainable lifestyle. Growing your own food gives you complete control over what you eat, free from unknown pesticides and chemicals. It reconnects you with nature, reduces stress, and provides a rewarding sense of accomplishment. Plus, there's nothing more satisfying than harvesting fresh, delicious produce right from your own backyard. Start small, learn as you grow, and enjoy the countless benefits of cultivating your own little patch of green.
+                     </p>
+                  </div>
+            </div>
+        </div>
+        
+        <div id="page-recommendation" class="hidden-page">
+            <section class="page-header" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/croprecommendation.jpg')">
+                <h1>Crop Recommendation</h1>
+                <p>Login or create an account to access our advanced tool that suggests the best crops for your specific conditions.</p>
+            </section>
+            <div class="container mx-auto px-6 pb-12 fade-in">
+                <div id="login-signup-section">
+                    <div class="max-w-md mx-auto">
+                        <div id="signup-form-container" class="card">
+                            <h2 class="text-3xl font-bold text-center text-green-700 mb-2">Create Your Account</h2>
+                            <p class="text-center text-gray-500 mb-6">It's free and only takes a minute.</p>
+                            <form id="signup-form" class="space-y-4">
+                                <div>
+                                    <label for="first-name" class="block font-medium mb-1">First Name</label>
+                                    <input type="text" id="first-name" class="w-full p-3 border rounded-md" required>
+                                </div>
+                                <div>
+                                    <label for="last-name" class="block font-medium mb-1">Last Name</label>
+                                    <input type="text" id="last-name" class="w-full p-3 border rounded-md" required>
+                                </div>
+                                <div>
+                                    <label for="signup-email" class="block font-medium mb-1">Email</label>
+                                    <input type="email" id="signup-email" class="w-full p-3 border rounded-md" required>
+                                </div>
+                                <div>
+                                    <label for="signup-password" class="block font-medium mb-1">Password</label>
+                                    <input type="password" id="signup-password" class="w-full p-3 border rounded-md" required>
+                                </div>
+                                <div class="pt-2">
+                                    <button type="submit" class="w-full btn-primary">Create Account</button>
+                                </div>
+                            </form>
+                            <p class="text-center mt-6 text-sm text-gray-600">
+                                Already have an account? <a href="#" id="show-login" class="font-semibold text-green-600 hover:underline">Login here</a>
+                            </p>
+                        </div>
+                        <div id="login-form-container" class="card hidden">
+                            <h2 class="text-3xl font-bold text-center text-green-700 mb-2">Welcome Back!</h2>
+                            <p class="text-center text-gray-500 mb-6">Access your personalized recommendations.</p>
+                            <form id="login-form" class="space-y-4">
+                                <div>
+                                    <label for="login-email" class="block font-medium mb-1 text-gray-700">Email</label>
+                                    <input type="email" id="login-email" value="farmer@aerogrowth.com" class="w-full p-3 border rounded-md" placeholder="you@example.com" required>
+                                </div>
+                                <div>
+                                    <label for="login-password" class="block font-medium mb-1 text-gray-700">Password</label>
+                                    <input type="password" id="login-password" value="password" class="w-full p-3 border rounded-md" placeholder="••••••••" required>
+                                </div>
+                                <div class="pt-2">
+                                    <button type="submit" class="w-full btn-primary">Log In</button>
+                                </div>
+                            </form>
+                            <p class="text-center mt-6 text-sm text-gray-600">
+                                Don't have an account? <a href="#" id="show-signup" class="font-semibold text-green-600 hover:underline">Sign Up</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="recommendation-system-section" class="hidden">
+                    <div class="max-w-xl mx-auto">
+                        <div class="card bg-cover bg-center rounded-xl" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1625246333195-78d9c38AD449?q=80&w=2070&auto=format&fit=crop');">
+                            <form id="recommendation-form" class="space-y-4 text-white">
+                                <div>
+                                    <label for="rec-city" class="block font-medium mb-1">City/Town</label>
+                                    <input type="text" id="rec-city" class="w-full p-3 border-0 rounded-md bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-green-400" placeholder="e.g., Pune">
+                                </div>
+                                <div>
+                                    <label for="rec-temp" class="block font-medium mb-1">Avg. Temperature (°C)</label>
+                                    <input type="number" id="rec-temp" class="w-full p-3 border-0 rounded-md bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-green-400" placeholder="e.g., 25">
+                                </div>
+                                <div>
+                                    <label for="rec-rainfall" class="block font-medium mb-1">Avg. Annual Rainfall (mm)</label>
+                                    <input type="number" id="rec-rainfall" class="w-full p-3 border-0 rounded-md bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-green-400" placeholder="e.g., 750">
+                                </div>
+                                <div>
+                                    <label for="rec-soil" class="block font-medium mb-1">Soil Type</label>
+                                    <select id="rec-soil" class="w-full p-3 border-0 rounded-md bg-white/20 text-white focus:ring-2 focus:ring-green-400">
+                                        <option class="text-black" value="loamy">Loamy</option>
+                                        <option class="text-black" value="sandy">Sandy</option>
+                                        <option class="text-black" value="clay">Clay</option>
+                                        <option class="text-black" value="black">Black Soil</option>
+                                    </select>
+                                </div>
+                                <div class="pt-4 text-center">
+                                    <button type="submit" class="btn-primary">Get Recommendation</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div id="recommendation-result" class="hidden mt-12 text-center">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-automation" class="hidden-page">
+            <section class="page-header" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('images/automationhead.jpg')">
+                <h1>Smart Farm Dashboard</h1>
+                <p>A conceptual dashboard to remotely monitor and control your automated farming systems.</p>
+            </section>
+            <div class="container mx-auto px-6 pb-12 fade-in">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card">
+                        <h3 class="font-bold text-lg mb-4 text-gray-700">Nutrient System</h3>
+                        <canvas id="nutrientChart"></canvas>
+                    </div>
+                    <div class="card">
+                        <h3 class="font-bold text-lg mb-4 text-gray-700">Lighting Control</h3>
+                        <div class="space-y-4">
+                            <label for="light-intensity" class="flex justify-between"><span>Light Intensity</span><span id="light-value">75%</span></label>
+                            <input type="range" id="light-intensity" class="w-full" min="0" max="100" value="75">
+                            <p class="text-sm text-gray-500">Schedule: <span class="font-semibold text-green-600">ON (6 AM - 10 PM)</span></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="font-bold text-lg mb-4 text-gray-700">Environment</h3>
+                        <canvas id="environmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    
+    <script src="script.js"></script>
+
+</body>
+</html>

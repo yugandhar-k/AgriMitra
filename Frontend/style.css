@@ -1,0 +1,336 @@
+body {
+    font-family: 'Manrope', sans-serif;
+    background-color: #f8fafc; /* Old background color */
+    /* Old subtle background pattern for texture */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.4'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    color: #1e293b;
+}
+
+:root {
+    --primary-green: #22c55e;
+    --dark-green: #15803d;
+    --light-green: #dcfce7;
+    --accent-amber: #f59e0b;
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: var(--primary-green);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover:after,
+.nav-link.active:after {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--dark-green);
+}
+
+.hidden-page {
+    display: none;
+}
+
+.page-header {
+    padding: 16rem 1.5rem; /* Using old padding for better responsiveness */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.page-header p {
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 1rem auto 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--dark-green);
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: #475569;
+    text-align: center;
+    max-width: 700px;
+    margin: 0.5rem auto 3rem auto;
+}
+
+.card {
+    background-color: white;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.growth-stage-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    padding: 1rem;
+    text-align: center;
+}
+
+.growth-stage-item.active {
+    border-color: var(--primary-green);
+    color: var(--dark-green);
+    background-color: var(--light-green);
+    border-radius: 0.5rem;
+}
+
+.growth-stage-item:hover {
+    background-color: #f0fdf4;
+    border-radius: 0.5rem;
+}
+
+.rec-slider-item {
+    transition: opacity 0.7s ease-in-out;
+}
+
+.btn-primary {
+    background-color: var(--primary-green);
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-green);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(21, 128, 61, 0.3);
+}
+
+input,
+select {
+    transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-green) !important;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3) !important;
+}
+
+/* Toggle Switch CSS */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 28px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.toggle-slider {
+    background-color: var(--primary-green);
+}
+
+input:checked+.toggle-slider:before {
+    transform: translateX(22px);
+}
+
+.text-shadow-lg {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.text-shadow {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+#showcase-iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: auto; /* Allow width to be calculated automatically */
+    min-width: 100%; /* Ensure it at least fills the container width */
+    aspect-ratio: 9 / 16; /* Force the iframe to a vertical aspect ratio */
+    transform: translate(-50%, -50%);
+}
+
+#crop-showcase-container {
+    height: 60vh;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px;
+}
+
+/* --- GARDEN PLANNER STYLES (NEW) --- */
+.garden-plan-results-card {
+    background-color: #f5f5dc !important;
+    /* Light beige background */
+}
+
+#garden-plot-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 2px;
+    background-color: #D2B48C;
+    /* Tan color as a base for gaps */
+}
+
+.plot-cell {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.plot-cell-unused {
+    background-color: #8B4513;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2396541b' fill-opacity='0.4'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.garden-plan-results-card h2 {
+    color: #166534;
+    /* A rich, dark green that complements the beige */
+}
+
+#garden-input-summary {
+    color: #334155;
+    /* A darker, complementing slate color for the text */
+}
+
+#gardening-layout-container.initial-view {
+    display: flex;
+    justify-content: center;
+}
+
+#gardening-layout-container.results-view {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+    #gardening-layout-container.results-view {
+        grid-template-columns: 1fr 1.5fr;
+        /* Two columns on larger screens */
+    }
+}
+
+#gardening-form-wrapper,
+#garden-plan-results {
+    height: 100%;
+}
+
+#gardening-form-wrapper>div {
+    height: 100%;
+}
+
+#garden-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+}
+
+.loader-sprout {
+    width: 60px;
+    height: 60px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2315803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c0-3.3 1-6 4-6"/><path d="M12 2a2 2 0 0 0-2 2c0 1.1.9 2 2 2s2-.9 2-2a2 2 0 0 0-2-2Z"/><path d="M14 20c0-3.3-1-6-4-6"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: sprout-grow 1.5s ease-in-out infinite;
+}
+
+@keyframes sprout-grow {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+}
